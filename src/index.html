@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
-    <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Homework 10</title>
   </head>
   <body>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
+    <div class="select-container">
+      <select class="breed-select"></select>
+
+      <p class="loader">Loading data, please wait...</p>
+      <p class="error">Oops! Something went wrong! Try reloading the page!</p>
+    </div>
+    <div class="cat-info"></div>
+
+    <script src="index.js" type="module"></script>
   </body>
 </html>

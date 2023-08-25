@@ -1,4 +1,4 @@
-import { serviceCats, serviceCatsImages } from './cat-api';
+import { fetchBreeds, fetchCatByBreed } from './cat-api';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -12,8 +12,8 @@ const elements = {
 
 const { selectEl, textMarkEl, loaderEl, errorEl } = elements;
 
-loaderEl.classList.replace('loader', 'is-hidden');
-errorEl.classList.add('is-hidden');
+// loaderEl.classList.replace('loader', 'is-hidden');
+// errorEl.classList.add('is-hidden');
 textMarkEl.classList.add('is-hidden');
 
 selectEl.addEventListener('change', createMarkUp);
@@ -21,8 +21,10 @@ selectEl.addEventListener('change', createMarkUp);
 updateSelect();
 
 function updateSelect(data) {
-  serviceCats(data)
+  fetchBreeds(data)
     .then(data => {
+      loaderEl.classList.replace('loader', 'is-hidden');
+
       let markSelect = data.map(({ name, id }) => {
         return `<option value ='${id}'>${name}</option>`;
       });
@@ -41,7 +43,7 @@ function createMarkUp(event) {
 
   const breedId = event.currentTarget.value;
 
-  serviceCatsImages(breedId)
+  fetchCatByBreed(breedId)
     .then(data => {
       loaderEl.classList.replace('loader', 'is-hidden');
       selectEl.classList.remove('is-hidden');
